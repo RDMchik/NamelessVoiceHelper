@@ -1,3 +1,5 @@
+from lib.utils.load_json import JsonLoader
+
 from screeninfo import get_monitors
 from PIL import Image
 
@@ -19,17 +21,21 @@ class GUI(object):
 
     def get_wallpaper_directory() -> str:
 
-        ubuf = ctypes.create_unicode_buffer(512)
-        ctypes.windll.user32.SystemParametersInfoW(win32con.SPI_GETDESKWALLPAPER,len(ubuf),ubuf,0)
+        original_wallpaper_dir = JsonLoader.load('data\\settings.json')['original_wallpaper_dir']
 
-        return ubuf.value
+        if not original_wallpaper_dir:
+            ubuf = ctypes.create_unicode_buffer(512)
+            ctypes.windll.user32.SystemParametersInfoW(win32con.SPI_GETDESKWALLPAPER,len(ubuf),ubuf,0)
+            return ubuf.value
+
+        return original_wallpaper_dir
 
     def change_wallpaper(path) -> None:
 
         ctypes.windll.user32.SystemParametersInfoW(20, 0, os.path.dirname(os.path.abspath('main.py')) + "\\" + path, 0)
 
     def draw_image_on_primary_monitor(image_directory: str) -> None:
-        
+
         if not GUI.primary_monitor:
             raise Exception("No primary monitor detected")
 

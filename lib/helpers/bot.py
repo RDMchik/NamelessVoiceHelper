@@ -86,6 +86,9 @@ class Bot(object):
         bot_name = self.__get_settings()['bot_nickname']
         print("Running bot as %s" % (bot_name if bot_name else 'Nameless'))
 
+        if not self.__get_settings()['original_wallpaper_dir']:
+            JsonLoader.add_change_key(Bot.SETTINGS_DIRECTORY, 'original_wallpaper_dir', GUI.get_wallpaper_directory())
+
         self.__talk("Welcome back %s" % self.__get_settings()['username'])
 
         if not self.__get_settings()['bot_nickname']:
