@@ -1,0 +1,9 @@
+gTTS
+playsound
+SpeechRecognition pydub
+pyaudio
+plyer
+randfacts
+win32api
+screeninfo
+Pillow
