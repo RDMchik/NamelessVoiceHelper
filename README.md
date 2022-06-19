@@ -13,3 +13,4 @@ on your windows machine, and use the runbot.bat file. If you want to have
 the bot startup all by it self whenever you boot up the pc, navigate to the
 C:\Users\YOURWINDOWSUSER\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup,
 and duplicate the runbot.bat file in there</h2>
+<h2>there are some important variables you could change in config.json file, dont touch the data/settings.json though</h2>
